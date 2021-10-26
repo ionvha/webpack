@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h2>我是一个地址</h2>
+        <h2>我是当前的订单</h2>
     </div>
 </template>
 
