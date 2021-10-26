@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const VueLoaderPlugin = require("vue-loader/lib/plugin.js");
 const {
     CleanWebpackPlugin
 } = require('clean-webpack-plugin');
@@ -27,15 +28,30 @@ module.exports = {
             },
             {
                 test: /\.css/,
-                use: [MiniCssExtractPlugin.loader, 'css-loader']
+                use: [{
+                    loader: MiniCssExtractPlugin.loader,
+                    options: {
+                        esModule: false
+                    } 
+                }, 'css-loader']
             },
             {
                 test: /\.less$/,
-                use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader']
+                use: [{
+                    loader: MiniCssExtractPlugin.loader,
+                    options: {
+                        esModule: false
+                    }
+                }, 'css-loader', 'less-loader']
             },
             {
                 test: /\.scss/,
-                use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
+                use: [{
+                    loader: MiniCssExtractPlugin.loader,
+                    options: {
+                        esModule: false
+                    }
+                }, 'css-loader', 'sass-loader']
             },
             {
                 test: /\.js$/,
@@ -46,6 +62,9 @@ module.exports = {
                         presets: ['@babel/preset-env']
                     }
                 }
+            },
+            {
+                test: /\.vue$/, use: 'vue-loader'
             },
         ]
     },
@@ -62,10 +81,21 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: './public/index.html',
         }),
-        new CleanWebpackPlugin(),
+        // 清除dist目录
+        // new CleanWebpackPlugin(), 
         new MiniCssExtractPlugin({
             // 每次打包重命名资源，可以防止客户端缓存
             filename: "[name]-[hash:8].css",
-        })
+        }),
+        new VueLoaderPlugin(),
     ],
+    resolve:{
+        alias:{
+            // 修正vue导的入路径，导入完整的Vue框架
+            'vue$':"vue/dist/vue.js",
+            '@': path.join(__dirname,'src'),
+            '@api':path.join(__dirname,'src/api'),
+            '@util':path.join(__dirname,'src/util')
+        }
+    }
 }

@@ -6,8 +6,9 @@ const {
 const common = require('./webpack.common.config.js');
 
 module.exports = merge(common, {
-    devtool: 'inline-source-map',
+    devtool: 'eval-cheap-module-source-map',
     devServer: {
+        hot:true,
         static: {
             directory: path.join(__dirname, 'dist'),
         },
