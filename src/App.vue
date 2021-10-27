@@ -6,7 +6,10 @@
         <router-link to='/login'>登录</router-link>
         <router-link to='/register'>注册</router-link>
         <router-link to='/user'>用户</router-link>
+        <router-link to='/article'>文章</router-link>
+
         <router-view></router-view>
+        
     </div>
 </template>
 
@@ -21,6 +24,14 @@
     }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+
+// 当前路由高亮显示：
+.router-link-active {
+    border-bottom: 2px solid red;
+}
+
+@import './assets/scss/common.scss'
+
 
 </style>

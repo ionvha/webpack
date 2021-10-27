@@ -12,9 +12,16 @@ import Vue from 'vue';
 
 import router from '@/router/index.js'
 
-import api from './api' 
-
 import App from './App.vue'
+
+import axios from '@/api/index';
+import {httpGet,httpPost} from '@/util/tool'
+
+// 挂载axios 
+Vue.prototype.$axios = axios; // 会走请求和响应拦截器
+Vue.prototype.$httpGet = httpGet; // 不会走请求和响应拦截器
+Vue.prototype.$httpPost = httpPost; // 不会走请求和响应拦截器
+
 new Vue({
     data:{
         message:'我是root组件'
@@ -23,7 +30,6 @@ new Vue({
     render: h => h(App)
 }).$mount('#app')
 
-Vue.prototype.$api = api;
 // console.log(sass)
 // console.log(css)
 // console.log(index);

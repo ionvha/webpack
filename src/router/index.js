@@ -15,13 +15,14 @@ Vue.use(VueRouter);
 const router = new VueRouter({
     routes: [
         { path: '/login', component: () => import('@/components/Login') }, // 使用懒加载
-        { path: '/register', component: () => import('@/components/Register') },
+        { path: '/register', component: () => import('@/components/Register') }, 
         {
             path: '/user', component: () => import('@/components/User'), children: [
                 { path: 'address', component: () => import('@/components/Address') },
                 { path: 'order', component: () => import('@/components/Order') },
             ]
-        }
+        },
+        {path:'/article',component: () => import("@/components/article")}
     ]
 })
 

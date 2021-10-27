@@ -1,22 +1,5 @@
-import base from '@/api/base'; 
-import axios from '@/request/http'; 
-import qs from 'qs';
+import axios from './index.js'
 
-const article = {    
-    // 新闻列表    
-    articleList () {        
-        return axios.get(`${base.sq}/topics`);    
-    },    
-    // 新闻详情,演示    
-    articleDetail (id, params) {        
-        return axios.get(`${base.sq}/topic/${id}`, {            
-            params: params        
-        });    
-    },
-    // post提交    
-    login (params) {        
-        return axios.post(`${base.sq}/accesstoken`, qs.stringify(params));    
-    }
+export function gettingArticle(){
+    return axios.get("https://api.apiopen.top/getJoke?page=1&count=2&type=video")
 }
-
-export default article;
