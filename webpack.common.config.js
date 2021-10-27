@@ -96,6 +96,7 @@ module.exports = {
             '@': path.join(__dirname,'src'),
             '@api':path.join(__dirname,'src/api'),
             '@util':path.join(__dirname,'src/util')
-        }
+        },
+        extensions:['.js','.json','.vue'],
     }
 }
